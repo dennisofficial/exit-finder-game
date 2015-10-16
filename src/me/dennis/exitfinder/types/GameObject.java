@@ -1,12 +1,26 @@
 package me.dennis.exitfinder.types;
 
-public class GameObject {
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
-	public Integer x;
-	public Integer y;
-	public Integer width;
-	public Integer height;
-	public Integer hspeed;
-	public Integer vspeed;
+public abstract class GameObject {
+
+	public double x;
+	public double y;
+	public int width;
+	public int height;
+	public float hspeed;
+	public float vspeed;
+	public Rectangle bounds;
+	
+	public GameObject(Integer x, Integer y) {
+		this.x = x;
+		this.y = y;
+		bounds = new Rectangle(x, y, width, height);
+	}
+	
+	public abstract void init();
+	public abstract void update();
+	public abstract void draw(Graphics g);
 	
 }

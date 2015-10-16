@@ -6,7 +6,7 @@ import me.dennis.exitfinder.input.Keyboard;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.utils.Settings;
 
-public class Main {
+public class Game {
 	
 	public static final Settings settings = new Settings();
 	public static final Keyboard keyboard = new Keyboard();
