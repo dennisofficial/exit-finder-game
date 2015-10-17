@@ -26,13 +26,27 @@ public class Keyboard implements KeyListener {
 		}
 	}
 	
+	public Boolean isDirect(Integer key) {
+		return keys.get(key);
+	}
+	
+	public Boolean isPressed(Integer key) {
+		return pkeys.get(key);
+	}
+	
+	public Boolean isReleased(Integer key) {
+		return rkeys.get(key);
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent event) {
+		keys.set(event.getKeyCode(), true);
 		pkeys.set(event.getKeyCode(), true);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent event) {
+		keys.set(event.getKeyCode(), false);
 		rkeys.set(event.getKeyCode(), true);
 	}
 

@@ -29,6 +29,10 @@ public class RoomManager {
 		}
 	}
 
+	public List<GameObject> getObjects() {
+		return rooms.get(cr).objects;
+	}
+	
 	public void init() {
 		rooms.get(cr).init();
 	}
@@ -37,6 +41,7 @@ public class RoomManager {
 		rooms.get(cr).update();
 		for (GameObject object : rooms.get(cr).objects) {
 			object.update();
+			object.velocity();
 		}
 	}
 	

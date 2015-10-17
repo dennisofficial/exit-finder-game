@@ -20,8 +20,8 @@ public class JavaPanel extends JPanel implements ActionListener {
 	private RoomManager RM = Game.roommanager;
 	
 	public JavaPanel() {
-		setFocusable(true);
 		requestFocus();
+		setFocusable(true);
 		
 		K.setupKeys();
 		RM.setupRooms();
@@ -35,6 +35,7 @@ public class JavaPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		RM.update();
 		repaint();
+		K.reset();
 	}
 	
 	@Override

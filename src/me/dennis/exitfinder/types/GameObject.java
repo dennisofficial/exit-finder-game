@@ -18,6 +18,12 @@ public abstract class GameObject {
 		this.y = y;
 		bounds = new Rectangle(x, y, width, height);
 	}
+
+	public void velocity() {
+		x += hspeed;
+		y += vspeed;
+		bounds = new Rectangle((int) x, (int) y, width, height);
+	}
 	
 	public abstract void init();
 	public abstract void update();
