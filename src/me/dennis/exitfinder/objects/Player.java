@@ -17,7 +17,7 @@ public class Player extends GameObject {
 	KeyMap km = Game.keymap;
 
 	double hozGain = 0.5;
-	double hozMax = 3;
+	double hozMax = 5;
 
 	public Player(Integer x, Integer y) {
 		super(x, y);
@@ -32,7 +32,7 @@ public class Player extends GameObject {
 	@Override
 	public void update() {
 		movementHoz();
-		vspeed += 0.25;
+		vspeed += .3;
 		jump();
 		collision();
 	}
@@ -71,7 +71,7 @@ public class Player extends GameObject {
 					Point L = new Point((int) x, (int) (y + height + vspeed));
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
 					if (block.bounds.contains(L) || block.bounds.contains(R)) {
-						vspeed -= 8;
+						vspeed -= 9;
 						break;
 					}
 				}
