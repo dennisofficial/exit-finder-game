@@ -71,7 +71,7 @@ public class Player extends GameObject {
 					Point L = new Point((int) x, (int) (y + height + vspeed));
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
 					if (block.bounds.contains(L) || block.bounds.contains(R)) {
-						vspeed -= 6;
+						vspeed -= 8;
 						break;
 					}
 				}

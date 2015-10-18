@@ -3,11 +3,13 @@ package me.dennis.exitfinder.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import me.dennis.exitfinder.core.Game;
+import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
 
 public class Wall extends GameObject {
 
-	public boolean collision;
+	RoomManager rm = Game.roommanager;
 	
 	public Wall(Integer x, Integer y) {
 		super(x, y);
@@ -21,6 +23,11 @@ public class Wall extends GameObject {
 
 	@Override
 	public void update() {
+		for (GameObject object : rm.getObjects()) {
+			if (object instanceof Wall) {
+				
+			}
+		}
 	}
 
 	@Override

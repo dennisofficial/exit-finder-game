@@ -19,7 +19,7 @@ public class Game {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.add(new JavaPanel());
+		f.add(new Display());
 		f.setVisible(true);
 		f.setResizable(false);
 		f.setSize(settings.WIDTH, settings.HEIGHT);
