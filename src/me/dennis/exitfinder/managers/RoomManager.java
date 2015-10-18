@@ -35,6 +35,9 @@ public class RoomManager {
 	
 	public void init() {
 		rooms.get(cr).init();
+		for (GameObject object : rooms.get(cr).objects) {
+			object.init();
+		}
 	}
 	
 	public void update() {

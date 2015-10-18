@@ -2,7 +2,8 @@ package me.dennis.exitfinder.enums;
 
 public enum FileType {
 
-	LEVEL("levels/", ".lvl");
+	LEVEL("levels/", ".lvl"),
+	IMAGE("images/", ".png");
 	
 	private String extension;
 	private String folder;

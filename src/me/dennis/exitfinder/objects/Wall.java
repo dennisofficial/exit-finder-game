@@ -7,6 +7,8 @@ import me.dennis.exitfinder.types.GameObject;
 
 public class Wall extends GameObject {
 
+	public boolean collision;
+	
 	public Wall(Integer x, Integer y) {
 		super(x, y);
 		width = 50;

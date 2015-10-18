@@ -31,17 +31,13 @@ public class Player extends GameObject {
 
 	@Override
 	public void update() {
-		gravity();
 		movementHoz();
+		vspeed += 0.25;
 		jump();
 		collision();
 	}
 
-	private void gravity() {
-		vspeed += 0.25;
-	}
-
-	public void movementHoz() {
+	private void movementHoz() {
 		if (key.isDirect(km.playerLeft())) {
 			if (key.isDirect(km.playerRight())) {
 				// L + R
@@ -51,7 +47,6 @@ public class Player extends GameObject {
 			else {
 				// L
 				if (hspeed > -hozMax) hspeed -= hozGain;
-
 			}
 		}
 		else {
@@ -67,12 +62,23 @@ public class Player extends GameObject {
 			}
 		}
 	}
-	
+
 	public void jump() {
 		if (key.isPressed(km.playerJump())) {
+			for (GameObject object : rm.getObjects()) {
+				if (object instanceof Wall) {
+					Wall block = (Wall) object;
+					Point L = new Point((int) x, (int) (y + height + vspeed));
+					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
+					if (block.bounds.contains(L) || block.bounds.contains(R)) {
+						vspeed -= 6;
+						break;
+					}
+				}
+			}
 		}
 	}
-	
+
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
 			if (object instanceof Wall) {
