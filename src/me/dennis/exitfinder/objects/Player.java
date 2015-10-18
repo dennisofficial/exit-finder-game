@@ -21,8 +21,8 @@ public class Player extends GameObject {
 
 	public Player(Integer x, Integer y) {
 		super(x, y);
-		width = 48;
-		height = 48;
+		width = 32;
+		height = 32;
 	}
 
 	@Override

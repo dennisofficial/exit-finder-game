@@ -26,8 +26,8 @@ public class Camera {
 	public void update() {
 		Point p = getPoint();
 		try {
-			x += (int) (-p.x + s.WIDTH/2 - x) * 0.02f;
-			y += (int) (-p.y + s.HEIGHT/2 - y) * 0.12f;
+			x += (int) (-p.x + s.WIDTH/2 - x) * 0.05f;
+			y += (int) (-p.y + s.HEIGHT/2 - y) * 0.07f;
 		} catch (NullPointerException e) {}
 	}
 	
