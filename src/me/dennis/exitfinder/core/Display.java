@@ -20,7 +20,7 @@ public class Display extends JPanel implements ActionListener {
 	private Keyboard K = Game.keyboard;
 	private RoomManager RM = Game.roommanager;
 	
-	private Camera cam;
+	Camera cam;
 	
 	public Display() {
 		requestFocus();
@@ -28,8 +28,7 @@ public class Display extends JPanel implements ActionListener {
 		
 		K.setupKeys();
 		RM.setupRooms();
-		
-		cam = new Camera(0, 0);
+		cam = new Camera();
 		
 		addKeyListener(K);
 		
@@ -39,9 +38,9 @@ public class Display extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		RM.update();
-		repaint();
 		K.reset();
 		cam.update();
+		repaint();
 	}
 	
 	@Override
@@ -49,9 +48,9 @@ public class Display extends JPanel implements ActionListener {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(new Color(0xEEEEEE));
 		g.fillRect(0, 0, S.WIDTH, S.HEIGHT);
-		g2d.translate(cam.x, cam.y);
+		g2d.translate(Camera.x, Camera.y);
 		RM.draw(g);
-		g2d.translate(-cam.x, -cam.x);
+		g2d.translate(-Camera.x, -Camera.x);
 		g.dispose();
 	}
 	

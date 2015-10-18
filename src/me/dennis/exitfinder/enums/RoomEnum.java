@@ -2,6 +2,11 @@ package me.dennis.exitfinder.enums;
 
 public enum RoomEnum {
 
-	MAIN
+	MAIN,
+	CREATOR;
+	
+	public Integer getId() {
+		return this.ordinal();
+	}
 	
 }

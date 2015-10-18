@@ -1,11 +1,17 @@
 package me.dennis.exitfinder.enums;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import me.dennis.exitfinder.types.GameFile;
 
 public enum Image {
 
 	DIRT("dirt", ImageType.BLOCK),
-	GRASS("grass", ImageType.BLOCK);
+	GRASS("grass", ImageType.BLOCK),
+	CURSOR("cursor", ImageType.BLOCK);
 
 	private GameFile file;
 	
@@ -15,6 +21,16 @@ public enum Image {
 	
 	public GameFile getFile() {
 		return file;
+	}
+	
+	public BufferedImage getImage() {
+		try {
+			return ImageIO.read(file);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

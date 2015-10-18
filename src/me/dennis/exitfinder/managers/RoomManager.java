@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.dennis.exitfinder.enums.RoomEnum;
+import me.dennis.exitfinder.rooms.RoomCreator;
 import me.dennis.exitfinder.rooms.RoomMain;
 import me.dennis.exitfinder.types.GameObject;
 import me.dennis.exitfinder.types.Room;
@@ -12,21 +13,16 @@ import me.dennis.exitfinder.types.Room;
 public class RoomManager {
 
 	public List<Room> rooms = new ArrayList<Room>();
-	public Integer cr = 0;
+	public Integer cr = RoomEnum.MAIN.getId();
 	
 	public void setupRooms() {
-		rooms.add(new RoomMain(RoomEnum.MAIN));
+		rooms.add(new RoomMain());
+		rooms.add(new RoomCreator());
 		init();
 	}
 	
 	public void setRoom(RoomEnum room) {
-		for (int i = 0; 0 < rooms.size(); i++) {
-			if (rooms.get(i).getEnum().equals(room)) {
-				cr = i;
-				init();
-				break;
-			}
-		}
+		cr = room.getId();
 	}
 
 	public List<GameObject> getObjects() {

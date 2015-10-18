@@ -1,5 +1,7 @@
 package me.dennis.exitfinder.core;
 
+import java.awt.Point;
+
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.objects.Player;
 import me.dennis.exitfinder.types.GameObject;
@@ -7,30 +9,35 @@ import me.dennis.exitfinder.utils.Settings;
 
 public class Camera {
 
-	public float x;
-	public float y;
+	public static int x;
+	public static int y;
+	public static int dx;
+	public static int dy;
 	
 	Settings s = Game.settings;
 	RoomManager rm = Game.roommanager;
 	
-	public Camera(float x, float y) {
-		this.x = x;
-		this.y = y;
+	public Camera() {
+		Point p = getPoint();
+		x = -p.x + s.WIDTH/2;
+		y = -p.x + s.HEIGHT/2;
 	}
 	
 	public void update() {
-		Player player = getPlayer();
-		x += (int) (-player.x + s.WIDTH/2 - x - player.width) * 0.02f;
-		y += (int) (-player.y + s.HEIGHT/2 - y - player.height) * 0.12f;
+		Point p = getPoint();
+		try {
+			x += (int) (-p.x + s.WIDTH/2 - x) * 0.02f;
+			y += (int) (-p.y + s.HEIGHT/2 - y) * 0.12f;
+		} catch (NullPointerException e) {}
 	}
 	
-	public Player getPlayer() {
+	public Point getPoint() {
 		for (GameObject object : rm.getObjects()) {
 			if (object instanceof Player) {
-				return (Player) object;
+				return new Point((int) object.x, (int) object.y);
 			}
 		}
-		return null;
+		return new Point((int) dx, (int) dy);
 	}
 	
 }

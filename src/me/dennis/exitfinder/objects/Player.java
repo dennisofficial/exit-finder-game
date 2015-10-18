@@ -16,13 +16,13 @@ public class Player extends GameObject {
 	Keyboard key = Game.keyboard;
 	KeyMap km = Game.keymap;
 
-	private double hozGain = 0.5;
-	private double hozMax = 3;
+	double hozGain = 0.5;
+	double hozMax = 3;
 
 	public Player(Integer x, Integer y) {
 		super(x, y);
-		width = 50;
-		height = 50;
+		width = 48;
+		height = 48;
 	}
 
 	@Override
@@ -87,6 +87,7 @@ public class Player extends GameObject {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
 					if (wall.bounds.contains(L) || wall.bounds.contains(R)) {
+						y = wall.y - height;
 						vspeed = 0;
 						break;
 					}
@@ -95,6 +96,7 @@ public class Player extends GameObject {
 					Point L = new Point((int) x, (int) (y + vspeed));
 					Point R = new Point((int) x + height - 1, (int) (y + vspeed));
 					if (wall.bounds.contains(L) || wall.bounds.contains(R)) {
+						y = wall.y + wall.height;
 						vspeed = 0;
 						break;
 					}
@@ -108,6 +110,7 @@ public class Player extends GameObject {
 					Point T = new Point((int) (x + width + hspeed - 1), (int) y);
 					Point B = new Point((int) (x + width + hspeed - 1), (int) y + height - 1);
 					if (wall.bounds.contains(T) || wall.bounds.contains(B)) {
+						x = wall.x - width;
 						hspeed = 0;
 						break;
 					}
@@ -116,6 +119,7 @@ public class Player extends GameObject {
 					Point T = new Point((int) (x + hspeed), (int) y);
 					Point B = new Point((int) (x + hspeed), (int) y + height - 1);
 					if (wall.bounds.contains(T) || wall.bounds.contains(B)) {
+						x = wall.x + wall.width;
 						hspeed = 0;
 						break;
 					}
