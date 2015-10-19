@@ -44,12 +44,18 @@ public class Elevator extends GameObject {
 				dir = TO;
 			}
 		}
+		// COLLISION CHECK FOR PLAYER
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(new Color(0xFFACAC));
 		g.fillRect((int) x, (int) y, width, height);
+	}
+	
+	@Override
+	public boolean isSolid() {
+		return true;
 	}
 	
 }

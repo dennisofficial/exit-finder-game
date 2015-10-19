@@ -81,12 +81,11 @@ public class Player extends GameObject {
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
 			if (object.isSolid()) {
-				Wall wall = (Wall) object;
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
-					if (wall.bounds.contains(L) || wall.bounds.contains(R)) {
-						y = wall.y - height;
+					if (object.bounds.contains(L) || object.bounds.contains(R)) {
+						y = object.y - height;
 						vspeed = 0;
 						break;
 					}
@@ -94,8 +93,8 @@ public class Player extends GameObject {
 				if (vspeed < 0) {
 					Point L = new Point((int) x, (int) (y + vspeed));
 					Point R = new Point((int) x + height - 1, (int) (y + vspeed));
-					if (wall.bounds.contains(L) || wall.bounds.contains(R)) {
-						y = wall.y + wall.height;
+					if (object.bounds.contains(L) || object.bounds.contains(R)) {
+						y = object.y + object.height;
 						vspeed = 0;
 						break;
 					}
