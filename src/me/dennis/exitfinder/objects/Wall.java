@@ -31,5 +31,10 @@ public class Wall extends GameObject {
 	public void draw(Graphics g) {
 		g.drawImage(image, (int) x, (int) y, width, height, null);
 	}
+	
+	@Override
+	public boolean isSolid() {
+		return true;
+	}
 
 }

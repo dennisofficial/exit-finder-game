@@ -66,11 +66,10 @@ public class Player extends GameObject {
 	public void jump() {
 		if (key.isPressed(km.playerJump())) {
 			for (GameObject object : rm.getObjects()) {
-				if (object instanceof Wall) {
-					Wall block = (Wall) object;
+				if (object.isSolid()) {
 					Point L = new Point((int) x, (int) (y + height + vspeed));
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
-					if (block.bounds.contains(L) || block.bounds.contains(R)) {
+					if (object.bounds.contains(L) || object.bounds.contains(R)) {
 						vspeed -= 11;
 						break;
 					}
@@ -81,7 +80,7 @@ public class Player extends GameObject {
 
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
-			if (object instanceof Wall) {
+			if (object.isSolid()) {
 				Wall wall = (Wall) object;
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
@@ -104,13 +103,12 @@ public class Player extends GameObject {
 			}
 		}
 		for (GameObject object : rm.getObjects()) {
-			if (object instanceof Wall) {
-				Wall wall = (Wall) object;
+			if (object.isSolid()) {
 				if (hspeed > 0) {
 					Point T = new Point((int) (x + width + hspeed - 1), (int) y);
 					Point B = new Point((int) (x + width + hspeed - 1), (int) y + height - 1);
-					if (wall.bounds.contains(T) || wall.bounds.contains(B)) {
-						x = wall.x - width;
+					if (object.bounds.contains(T) || object.bounds.contains(B)) {
+						x = object.x - width;
 						hspeed = 0;
 						break;
 					}
@@ -118,8 +116,8 @@ public class Player extends GameObject {
 				if (hspeed < 0) {
 					Point T = new Point((int) (x + hspeed), (int) y);
 					Point B = new Point((int) (x + hspeed), (int) y + height - 1);
-					if (wall.bounds.contains(T) || wall.bounds.contains(B)) {
-						x = wall.x + wall.width;
+					if (object.bounds.contains(T) || object.bounds.contains(B)) {
+						x = object.x + object.width;
 						hspeed = 0;
 						break;
 					}

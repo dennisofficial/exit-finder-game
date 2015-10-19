@@ -4,7 +4,8 @@ import me.dennis.exitfinder.types.GameFile;
 
 public enum Level {
 
-	W0L1(new GameFile("0-1", FileType.LEVEL));
+	W0L1(new GameFile("0-1", FileType.LEVEL)),
+	W0L2(new GameFile("0-2", FileType.LEVEL));
 	
 	private GameFile file;
 	
