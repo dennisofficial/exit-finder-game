@@ -36,12 +36,6 @@ public class Display extends JPanel implements ActionListener {
 		addKeyListener(K);
 		
 		new Timer(1000/S.FPS, this).start();
-		new Timer(1, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				repaint();
-			}
-		}).start();
 	}
 
 	@Override
@@ -50,7 +44,6 @@ public class Display extends JPanel implements ActionListener {
 		cam.update();
 		gm.check();
 		K.reset();
-		repaint();
 	}
 	
 	@Override
@@ -62,6 +55,8 @@ public class Display extends JPanel implements ActionListener {
 		RM.draw(g);
 		g2d.translate((int) -Camera.x, (int) -Camera.x);
 		g.dispose();
+		
+		repaint();
 	}
 	
 }
