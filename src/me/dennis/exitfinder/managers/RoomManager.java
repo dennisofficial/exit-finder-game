@@ -45,6 +45,7 @@ public class RoomManager {
 	}
 	
 	public void draw(Graphics g) {
+		rooms.get(cr).draw(g);
 		for (GameObject object : rooms.get(cr).objects) {
 			object.draw(g);
 		}

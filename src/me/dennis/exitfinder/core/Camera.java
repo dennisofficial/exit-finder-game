@@ -9,8 +9,8 @@ import me.dennis.exitfinder.utils.Settings;
 
 public class Camera {
 
-	public static int x;
-	public static int y;
+	public static float x;
+	public static float y;
 	public static int dx;
 	public static int dy;
 	
@@ -26,8 +26,8 @@ public class Camera {
 	public void update() {
 		Point p = getPoint();
 		try {
-			x += (int) (-p.x + s.WIDTH/2 - x) * 0.05f;
-			y += (int) (-p.y + s.HEIGHT/2 - y) * 0.07f;
+			x += (-p.x + s.WIDTH/2 - x) * 0.015f;
+			y += (-p.y + s.HEIGHT/2 - y) * 0.05f;
 		} catch (NullPointerException e) {}
 	}
 	

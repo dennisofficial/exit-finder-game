@@ -1,5 +1,7 @@
 package me.dennis.exitfinder.rooms;
 
+import java.awt.Graphics;
+
 import com.sun.glass.events.KeyEvent;
 
 import me.dennis.exitfinder.core.Camera;
@@ -54,6 +56,10 @@ public class RoomCreator extends Room {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void draw(Graphics g) {
 	}
 
 }

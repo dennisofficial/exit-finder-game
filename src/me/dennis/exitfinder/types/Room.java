@@ -1,5 +1,6 @@
 package me.dennis.exitfinder.types;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,5 +10,6 @@ public abstract class Room {
 	
 	public abstract void init();
 	public abstract void update();
+	public abstract void draw(Graphics g);
 	
 }

@@ -130,7 +130,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0xDAA1A1));
+		g.setColor(new Color(0xFF5A5A));
 		g.fillRect((int) x, (int) y, width, height);
 	}
 
