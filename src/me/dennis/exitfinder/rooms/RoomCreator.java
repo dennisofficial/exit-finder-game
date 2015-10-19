@@ -1,8 +1,7 @@
 package me.dennis.exitfinder.rooms;
 
 import java.awt.Graphics;
-
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import me.dennis.exitfinder.core.Camera;
 import me.dennis.exitfinder.core.Game;
