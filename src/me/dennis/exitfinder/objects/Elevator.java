@@ -2,13 +2,18 @@ package me.dennis.exitfinder.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 
+import me.dennis.exitfinder.core.Game;
+import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
 
 public class Elevator extends GameObject {
 
 	Direction TO = Direction.TO;
 	Direction BACK = Direction.BACK;
+	
+	RoomManager rm = Game.roommanager;
 	
 	int top, bot;
 	int speed = 2;
@@ -44,7 +49,27 @@ public class Elevator extends GameObject {
 				dir = TO;
 			}
 		}
-		// COLLISION CHECK FOR PLAYER
+		collisionCheck();
+	}
+	
+	private void collisionCheck() {
+		for (GameObject object : rm.getObjects()) {
+			if (object instanceof Player) {
+				Player player = (Player) object;
+				Point TL = new Point((int) x, (int) y - speed - 1);
+				Point TR = new Point((int) x + width - 1, (int) y - speed - 1);
+				if (player.bounds.contains(TL) || player.bounds.contains(TR)) {
+					player.y = y - player.height;
+					break;
+				}
+				Point BL = new Point((int) x, (int) y + height + speed);
+				Point BR = new Point((int) x + width - 1, (int) y + height + speed);
+				if (player.bounds.contains(BL) || player.bounds.contains(BR)) {
+					player.vspeed = speed + 1;
+					break;
+				}
+			}
+		}
 	}
 
 	@Override
