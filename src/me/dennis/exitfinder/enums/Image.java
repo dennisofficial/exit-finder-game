@@ -11,7 +11,8 @@ public enum Image {
 
 	DIRT("dirt", ImageType.BLOCK),
 	GRASS("grass", ImageType.BLOCK),
-	CURSOR("cursor", ImageType.BLOCK);
+	CURSOR("cursor", ImageType.BLOCK),
+	GRASS_SLAB("grass", ImageType.SLAB);
 
 	private GameFile file;
 	
