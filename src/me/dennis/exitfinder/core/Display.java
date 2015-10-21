@@ -81,7 +81,7 @@ public class Display extends JPanel implements ActionListener, Runnable {
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(new Color(0xEEEEEE));
-		g.fillRect(0, 0, S.WIDTH, S.HEIGHT);
+		g.fillRect(0, 0, S.width, S.height);
 		g2d.translate((int) Camera.x, (int) Camera.y);
 		RM.draw(g);
 		g2d.translate((int) -Camera.x, (int) -Camera.x);

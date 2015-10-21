@@ -24,7 +24,7 @@ public class Game {
 		f.add(new Display());
 		f.setVisible(true);
 		f.setResizable(false);
-		f.setSize(settings.WIDTH, settings.HEIGHT);
+		f.setSize(settings.width, settings.height);
 		f.setLocationRelativeTo(null);
 	}
 	

@@ -31,7 +31,7 @@ public class Background {
 	public void draw(Graphics g) {
 		if (color != null) {
 			g.setColor(color);
-			g.fillRect((int) -Camera.x, (int) -Camera.y, s.WIDTH, s.HEIGHT);
+			g.fillRect((int) -Camera.x, (int) -Camera.y, s.width, s.height);
 		}
 	}
 	

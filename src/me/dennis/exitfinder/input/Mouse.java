@@ -42,8 +42,17 @@ public class Mouse implements MouseListener, MouseMotionListener {
 		return rkeys.get(key);
 	}
 	
+	public Point getPoint() {
+		return point;
+	}
+	
 	@Override
 	public void mouseMoved(MouseEvent event) {
+		point.setLocation(event.getPoint());
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent event) {
 		point.setLocation(event.getPoint());
 	}
 	
@@ -65,7 +74,5 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	public void mouseEntered(MouseEvent event) {}
 	@Override
 	public void mouseExited(MouseEvent event) {}
-	@Override
-	public void mouseDragged(MouseEvent event) {}
 
 }

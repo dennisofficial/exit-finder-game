@@ -38,7 +38,7 @@ public class Creator extends GameObject {
 		g.drawString("X: " + x +
 				" - Y: " + y +
 				" - Objects: " + (rm.getObjects().size() - 1), 
-				(int) -Camera.x + 10, (int) -Camera.y + s.HEIGHT - 40);
+				(int) -Camera.x + 10, (int) -Camera.y + s.height - 40);
 	}
 
 }
