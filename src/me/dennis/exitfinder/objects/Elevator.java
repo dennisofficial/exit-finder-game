@@ -1,10 +1,11 @@
 package me.dennis.exitfinder.objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 import me.dennis.exitfinder.core.Game;
+import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
 
@@ -13,14 +14,15 @@ public class Elevator extends GameObject {
 	Direction TO = Direction.TO;
 	Direction BACK = Direction.BACK;
 	
+	BufferedImage image = Image.GRASS_SLAB.getImage();
 	RoomManager rm = Game.roommanager;
 	
 	int top, bot;
-	int speed = 2;
+	int speed = 3;
 	Direction dir = TO;
 	
-	public Elevator(Integer x, Integer y) {
-		super(x, y);
+	public Elevator(Integer x, Integer y, Integer meta) {
+		super(x, y, meta);
 		width = 32;
 		height = 16;
 		top = y - 128;
@@ -74,8 +76,7 @@ public class Elevator extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0xFFACAC));
-		g.fillRect((int) x, (int) y, width, height);
+		g.drawImage(image, (int) x, (int) y, width, height, null);
 	}
 	
 	@Override

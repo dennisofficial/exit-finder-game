@@ -15,7 +15,7 @@ public class RoomCreator extends Room {
 
 	Keyboard key = Game.keyboard;
 	
-	Creator c = new Creator(0, 0);
+	Creator c = new Creator(0, 0, 0);
 	
 	@Override
 	public void init() {
@@ -46,7 +46,7 @@ public class RoomCreator extends Room {
 					}
 				}
 			}
-			objects.add(new Wall((int) c.x, (int) c.y));
+			objects.add(new Wall((int) c.x, (int) c.y, 0));
 		}
 		if (key.isPressed(KeyEvent.VK_ENTER)) {
 			for (GameObject object : objects) {

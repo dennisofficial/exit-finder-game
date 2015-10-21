@@ -13,8 +13,8 @@ public class Wall extends GameObject {
 	
 	public BufferedImage image = null;
 	
-	public Wall(Integer x, Integer y) {
-		super(x, y);
+	public Wall(Integer x, Integer y, Integer meta) {
+		super(x, y, meta);
 		width = 32;
 		height = 32;
 	}
@@ -37,4 +37,13 @@ public class Wall extends GameObject {
 		return true;
 	}
 
+}
+enum Block {
+	
+	GRASS;
+
+	public Integer getId() {
+		return this.ordinal();
+	}
+	
 }

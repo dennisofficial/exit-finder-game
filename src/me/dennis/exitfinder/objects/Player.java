@@ -19,8 +19,8 @@ public class Player extends GameObject {
 	double hozGain = 0.5;
 	double hozMax = 3;
 
-	public Player(Integer x, Integer y) {
-		super(x, y);
+	public Player(Integer x, Integer y, Integer meta) {
+		super(x, y, meta);
 		width = 32;
 		height = 32;
 	}

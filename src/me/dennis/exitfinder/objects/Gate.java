@@ -6,8 +6,8 @@ import me.dennis.exitfinder.types.GameObject;
 
 public class Gate extends GameObject {
 
-	public Gate(Integer x, Integer y) {
-		super(x, y);
+	public Gate(Integer x, Integer y, Integer meta) {
+		super(x, y, meta);
 		width = 32;
 		height = 32;
 	}

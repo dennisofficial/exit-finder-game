@@ -1,1 +1,1 @@
-Player,128,-64;Wall,0,0;Wall,0,32;Wall,32,0;Wall,64,0;Wall,96,0;Wall,128,0;Wall,160,0;Wall,160,32;Wall,128,32;Wall,96,32;Wall,64,32;Wall,32,32;Wall,192,32;Wall,192,0;Wall,224,0;Wall,224,32;Wall,256,32;Wall,256,0;
+Player,128,-64,0;Wall,0,0,0;Wall,0,32,0;Wall,32,0,0;Wall,64,0,0;Wall,96,0,0;Wall,128,0,0;Wall,160,0,0;Wall,160,32,0;Wall,128,32,0;Wall,96,32,0;Wall,64,32,0;Wall,32,32,0;Wall,192,32,0;Wall,192,0,0;Wall,224,0,0;Wall,224,32,0;Wall,256,32,0;Wall,256,0,0,0

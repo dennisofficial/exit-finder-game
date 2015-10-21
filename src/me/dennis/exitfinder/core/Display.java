@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import me.dennis.exitfinder.input.Keyboard;
+import me.dennis.exitfinder.input.Mouse;
 import me.dennis.exitfinder.managers.GrassManager;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.utils.Settings;
@@ -19,6 +20,7 @@ public class Display extends JPanel implements ActionListener {
 
 	private Settings S = Game.settings;
 	private Keyboard K = Game.keyboard;
+	private Mouse M = Game.mouse;
 	private RoomManager RM = Game.roommanager;
 	
 	Camera cam;
@@ -29,11 +31,14 @@ public class Display extends JPanel implements ActionListener {
 		setFocusable(true);
 		
 		K.setupKeys();
+		M.setupKeys();
 		RM.setupRooms();
 		cam = new Camera();
 		gm = new GrassManager();
 		
 		addKeyListener(K);
+		addMouseListener(M);
+		addMouseMotionListener(M);
 		
 		new Timer(1000/S.FPS, this).start();
 	}
@@ -44,6 +49,7 @@ public class Display extends JPanel implements ActionListener {
 		cam.update();
 		gm.check();
 		K.reset();
+		M.reset();
 	}
 	
 	@Override

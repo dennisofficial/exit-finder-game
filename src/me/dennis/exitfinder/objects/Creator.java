@@ -17,8 +17,8 @@ public class Creator extends GameObject {
 	Keyboard key = Game.keyboard;
 	Settings s = Game.settings;
 	
-	public Creator(Integer x, Integer y) {
-		super(x, y);
+	public Creator(Integer x, Integer y, Integer meta) {
+		super(x, y, meta);
 		width = 32;
 		height = 32;
 	}

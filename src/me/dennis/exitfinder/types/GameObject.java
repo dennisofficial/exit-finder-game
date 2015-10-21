@@ -9,13 +9,15 @@ public abstract class GameObject {
 	public double y;
 	public int width;
 	public int height;
+	public int metadata;
 	public float hspeed;
 	public float vspeed;
 	public Rectangle bounds;
 	
-	public GameObject(Integer x, Integer y) {
+	public GameObject(Integer x, Integer y, Integer meta) {
 		this.x = x;
 		this.y = y;
+		metadata = meta;
 		bounds = new Rectangle(x, y, width, height);
 	}
 

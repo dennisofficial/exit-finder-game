@@ -23,8 +23,8 @@ public class MapLoader {
 				String[] props = group.split(",");
 				try {
 					Object object = Class.forName("me.dennis.exitfinder.objects." + props[0])
-					.getConstructor(Integer.class, Integer.class)
-					.newInstance(new Integer(props[1]), new Integer(props[2]));
+					.getConstructor(Integer.class, Integer.class, Integer.class)
+					.newInstance(new Integer(props[1]), new Integer(props[2]), new Integer(props[3]));
 					output.add((GameObject) object);
 				}
 				catch (InstantiationException | IllegalAccessException | IllegalArgumentException
