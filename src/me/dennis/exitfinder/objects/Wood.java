@@ -24,14 +24,16 @@ public class Wood extends GameObject {
 	@Override
 	public void update() {
 		vspeed += 0.5;
-		if (hspeed > 0) hspeed -= 0.5;
-		if (hspeed < 0) hspeed += 0.5;
+		if (hspeed > 0)
+			hspeed -= 0.5;
+		if (hspeed < 0)
+			hspeed += 0.5;
 		collision();
 	}
 
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
-			if (object.isSolid() && !(object instanceof Wood)) {
+			if (object.isSolid() && !object.equals(this)) {
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
@@ -67,21 +69,23 @@ public class Wood extends GameObject {
 			}
 		}
 	}
-	
+
 	public boolean check(Integer i) {
 		for (GameObject object : rm.getObjects()) {
-			if (i > 0) {
-				Point T = new Point((int) (x + width + hspeed - 1), (int) y);
-				Point B = new Point((int) (x + width + hspeed - 1), (int) y + height - 1);
-				if (object.bounds.contains(T) || object.bounds.contains(B)) {
-					return true;
+			if (object.isSolid() && !object.equals(this)) {
+				if (i > 0) {
+					Point T = new Point((int) (x + width + 1), (int) y);
+					Point B = new Point((int) (x + width + 1), (int) y + height - 1);
+					if (object.bounds.contains(T) || object.bounds.contains(B)) {
+						return true;
+					}
 				}
-			}
-			if (i < 0) {
-				Point T = new Point((int) (x + hspeed), (int) y);
-				Point B = new Point((int) (x + hspeed), (int) y + height - 1);
-				if (object.bounds.contains(T) || object.bounds.contains(B)) {
-					return true;
+				if (i < 0) {
+					Point T = new Point((int) x - 1, (int) y);
+					Point B = new Point((int) x - 1, (int) y + height - 1);
+					if (object.bounds.contains(T) || object.bounds.contains(B)) {
+						return true;
+					}
 				}
 			}
 		}

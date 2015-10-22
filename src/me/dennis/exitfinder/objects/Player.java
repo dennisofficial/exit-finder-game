@@ -65,7 +65,7 @@ public class Player extends GameObject {
 	public void jump() {
 		if (key.isPressed(km.playerJump())) {
 			for (GameObject object : rm.getObjects()) {
-				if (object.isSolid() && !(object instanceof Player)) {
+				if (object.isSolid() && !object.equals(this)) {
 					Point L = new Point((int) x, (int) (y + height + vspeed));
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
 					if (object.bounds.contains(L) || object.bounds.contains(R)) {
@@ -79,7 +79,7 @@ public class Player extends GameObject {
 
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
-			if (object.isSolid() && !(object instanceof Player)) {
+			if (object.isSolid() && !object.equals(this)) {
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
@@ -100,6 +100,12 @@ public class Player extends GameObject {
 					Point T = new Point((int) (x + width + hspeed - 1), (int) y);
 					Point B = new Point((int) (x + width + hspeed - 1), (int) y + height - 1);
 					if (object.bounds.contains(T) || object.bounds.contains(B)) {
+						if (object instanceof Wood) {
+							Wood wood = (Wood) object;
+							if (!wood.check(1)) {
+								object.x = x + width + 1;
+							}
+						}
 						x = object.x - width;
 						hspeed = 0;
 					}
@@ -111,7 +117,7 @@ public class Player extends GameObject {
 						if (object instanceof Wood) {
 							Wood wood = (Wood) object;
 							if (!wood.check(-1)) {
-								object.x = x - width + hspeed;
+								object.x = x - width - 1;
 							}
 						}
 						x = object.x + object.width;
