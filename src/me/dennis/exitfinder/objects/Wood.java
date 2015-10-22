@@ -4,21 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import me.dennis.exitfinder.core.Game;
-import me.dennis.exitfinder.input.Keyboard;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
-import me.dennis.exitfinder.utils.KeyMap;
 
-public class Player extends GameObject {
+public class Wood extends GameObject {
 
 	RoomManager rm = Game.roommanager;
-	Keyboard key = Game.keyboard;
-	KeyMap km = Game.keymap;
 
-	double hozGain = 0.5;
-	double hozMax = 3;
-
-	public Player(Integer x, Integer y, Integer meta) {
+	public Wood(Integer x, Integer y, Integer meta) {
 		super(x, y, meta);
 		width = 32;
 		height = 32;
@@ -30,56 +23,15 @@ public class Player extends GameObject {
 
 	@Override
 	public void update() {
-		movementHoz();
 		vspeed += 0.5;
-		jump();
+		if (hspeed > 0) hspeed -= 0.5;
+		if (hspeed < 0) hspeed += 0.5;
 		collision();
-	}
-
-	private void movementHoz() {
-		if (key.isDirect(km.playerLeft())) {
-			if (key.isDirect(km.playerRight())) {
-				// L + R
-				if (hspeed > 0) hspeed -= hozGain;
-				if (hspeed < 0) hspeed += hozGain;
-			}
-			else {
-				// L
-				if (hspeed > -hozMax) hspeed -= hozGain;
-			}
-		}
-		else {
-			if (key.isDirect(km.playerRight())) {
-				// R
-				if (hspeed < hozMax) hspeed += hozGain;
-
-			}
-			else {
-				// NONE
-				if (hspeed > 0) hspeed -= hozGain;
-				if (hspeed < 0) hspeed += hozGain;
-			}
-		}
-	}
-
-	public void jump() {
-		if (key.isPressed(km.playerJump())) {
-			for (GameObject object : rm.getObjects()) {
-				if (object.isSolid() && !(object instanceof Player)) {
-					Point L = new Point((int) x, (int) (y + height + vspeed));
-					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
-					if (object.bounds.contains(L) || object.bounds.contains(R)) {
-						vspeed -= 11;
-						break;
-					}
-				}
-			}
-		}
 	}
 
 	public void collision() {
 		for (GameObject object : rm.getObjects()) {
-			if (object.isSolid() && !(object instanceof Player)) {
+			if (object.isSolid() && !(object instanceof Wood)) {
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
@@ -108,12 +60,6 @@ public class Player extends GameObject {
 					Point T = new Point((int) (x + hspeed), (int) y);
 					Point B = new Point((int) (x + hspeed), (int) y + height - 1);
 					if (object.bounds.contains(T) || object.bounds.contains(B)) {
-						if (object instanceof Wood) {
-							Wood wood = (Wood) object;
-							if (!wood.check(-1)) {
-								object.x = x - width + hspeed;
-							}
-						}
 						x = object.x + object.width;
 						hspeed = 0;
 					}
@@ -121,10 +67,30 @@ public class Player extends GameObject {
 			}
 		}
 	}
+	
+	public boolean check(Integer i) {
+		for (GameObject object : rm.getObjects()) {
+			if (i > 0) {
+				Point T = new Point((int) (x + width + hspeed - 1), (int) y);
+				Point B = new Point((int) (x + width + hspeed - 1), (int) y + height - 1);
+				if (object.bounds.contains(T) || object.bounds.contains(B)) {
+					return true;
+				}
+			}
+			if (i < 0) {
+				Point T = new Point((int) (x + hspeed), (int) y);
+				Point B = new Point((int) (x + hspeed), (int) y + height - 1);
+				if (object.bounds.contains(T) || object.bounds.contains(B)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0xFFFFFF));
+		g.setColor(new Color(0x0));
 		g.fillRect((int) x, (int) y, width, height);
 	}
 

@@ -2,7 +2,6 @@ package me.dennis.exitfinder.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import me.dennis.exitfinder.core.Camera;
 import me.dennis.exitfinder.core.Game;
 import me.dennis.exitfinder.enums.Image;
@@ -37,7 +36,7 @@ public class Creator extends GameObject {
 		g.setColor(new Color(0x0));
 		g.drawString("X: " + x +
 				" - Y: " + y +
-				" - Objects: " + (rm.getObjects().size() - 1), 
+				" - Objects: " + rm.getObjects().size(), 
 				(int) -Camera.x + 10, (int) -Camera.y + s.height - 40);
 	}
 

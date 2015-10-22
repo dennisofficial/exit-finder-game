@@ -4,11 +4,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-
+import java.awt.event.MouseEvent;
 import me.dennis.exitfinder.core.Camera;
 import me.dennis.exitfinder.core.Game;
 import me.dennis.exitfinder.input.Keyboard;
 import me.dennis.exitfinder.input.Mouse;
+import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.objects.Creator;
 import me.dennis.exitfinder.objects.Wall;
 import me.dennis.exitfinder.types.GameObject;
@@ -17,17 +18,20 @@ import me.dennis.exitfinder.utils.Settings;
 
 public class RoomCreator extends Room {
 
+	RoomManager rm = Game.roommanager;
 	Settings s = Game.settings;
 	Keyboard key = Game.keyboard;
 	Mouse mouse = Game.mouse;
 
 	Creator c = new Creator(0, 0, 0);
-
 	Rectangle viewport = new Rectangle(0, 0, s.width, s.height);
-
+	Point add = new Point(0, 0);
+	Point remove = new Point(0, 0);
+	
+	boolean b = false;
+	
 	@Override
 	public void init() {
-		objects.add(c);
 	}
 
 	@Override
@@ -35,59 +39,70 @@ public class RoomCreator extends Room {
 		viewport.x = (int) -Camera.x;
 		viewport.y = (int) -Camera.y;
 		mouse();
+		keyboard();
 	}
 
 	public void mouse() {
-		Point p = mouse.getPoint();
-		int xsnap = 0;
-		int ysnap = 0;
-		for (int i = 0; true; i += 32) {
-			if (p.x < i) {
-				break;
-			}
-			else {
-				xsnap = i;
+		Point p = (Point) mouse.getPoint().clone();
+		c.x = (int) (p.x / 32) * 32 - s.width / 2 + Camera.dx;
+		c.y = (int) (p.y / 32) * 32 - s.height / 2 + Camera.dy;
+		if (mouse.isPressed(MouseEvent.BUTTON1)) {
+			add.setLocation(c.x, c.y);
+		}
+		if (mouse.isPressed(MouseEvent.BUTTON3)) {
+			remove.setLocation(c.x, c.y);
+		}
+		if (mouse.isReleased(MouseEvent.BUTTON1)) {
+			if (add.equals(new Point((int) c.x, (int) c.y))) {
+				boolean create = true;
+				for (GameObject object : rm.getObjects()) {
+					if (object.bounds.contains(c.x, c.y)) {
+						create = false;
+						break;
+					}
+				}
+				if (create) {
+					rm.getObjects().add(new Wall((int) c.x, (int) c.y, 0));
+				}
 			}
 		}
-		for (int i = 0; true; i += 32) {
-			if (p.y < i) {
-				break;
-			}
-			else {
-				ysnap = i;
+		if (mouse.isReleased(MouseEvent.BUTTON3)) {
+			if (remove.equals(new Point((int) c.x, (int) c.y))) {
+				GameObject delete = null;
+				for (GameObject object : rm.getObjects()) {
+					if (object.bounds.contains(c.x, c.y)) {
+						delete = object;
+						break;
+					}
+				}
+				if (delete != null) {
+					rm.getObjects().remove(delete);
+				}
 			}
 		}
-		c.x = xsnap - s.width/2;
-		c.y = ysnap - s.height/2;
 	}
 
 	public void keyboard() {
 		if (key.isPressed(KeyEvent.VK_UP)) {
-			c.y -= c.height;
+			Camera.dy -= c.height;
+			Camera.y += c.height;
 		}
 		if (key.isPressed(KeyEvent.VK_DOWN)) {
-			c.y += c.height;
+			Camera.dy += c.height;
+			Camera.y -= c.height;
 		}
 		if (key.isPressed(KeyEvent.VK_LEFT)) {
-			c.x -= c.width;
+			Camera.dx -= c.width;
+			Camera.x += c.width;
 		}
 		if (key.isPressed(KeyEvent.VK_RIGHT)) {
-			c.x += c.width;
-		}
-		if (key.isPressed(KeyEvent.VK_SPACE)) {
-			for (GameObject object : objects) {
-				if (!(object instanceof Creator)) {
-					if (object.bounds.equals(c.bounds)) {
-						return;
-					}
-				}
-			}
-			objects.add(new Wall((int) c.x, (int) c.y, 0));
+			Camera.dx += c.width;
+			Camera.x -= c.width;
 		}
 		if (key.isPressed(KeyEvent.VK_ENTER)) {
 			for (GameObject object : objects) {
 				if (!(object instanceof Creator)) {
-					System.out.print(object.getClass().getSimpleName() + "," + (int) object.x + "," + (int) object.y + ";");
+					System.out.print(object.getClass().getSimpleName() + "," + (int) object.x + "," + (int) object.y + ",0;");
 				}
 			}
 		}
@@ -95,6 +110,7 @@ public class RoomCreator extends Room {
 
 	@Override
 	public void draw(Graphics g) {
+		c.draw(g);
 	}
 
 }
