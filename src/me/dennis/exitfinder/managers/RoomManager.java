@@ -13,7 +13,7 @@ import me.dennis.exitfinder.types.Room;
 public class RoomManager {
 
 	public List<Room> rooms = new ArrayList<Room>();
-	public Integer cr = RoomEnum.CREATOR.getId();
+	public Integer cr = RoomEnum.MAIN.getId();
 	
 	public void setupRooms() {
 		rooms.add(new RoomMain());
