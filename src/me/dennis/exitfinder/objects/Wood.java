@@ -74,8 +74,8 @@ public class Wood extends GameObject {
 		for (GameObject object : rm.getObjects()) {
 			if (object.isSolid() && !object.equals(this)) {
 				if (i > 0) {
-					Point T = new Point((int) (x + width + 1), (int) y);
-					Point B = new Point((int) (x + width + 1), (int) y + height - 1);
+					Point T = new Point((int) (x + width), (int) y);
+					Point B = new Point((int) (x + width), (int) y + height - 1);
 					if (object.bounds.contains(T) || object.bounds.contains(B)) {
 						return true;
 					}
