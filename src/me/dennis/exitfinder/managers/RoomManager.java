@@ -9,10 +9,10 @@ import me.dennis.exitfinder.types.Room;
 
 public class RoomManager {
 
-	Room room = RoomEnum.LEVEL.getRoom();
+	Room room = RoomEnum.LEVEL.room;
 	
 	public void setRoom(RoomEnum room) {
-		this.room = room.getRoom();
+		this.room = room.room;
 	}
 
 	public List<GameObject> getObjects() {

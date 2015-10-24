@@ -1,19 +1,18 @@
 package me.dennis.exitfinder.enums;
 
+import me.dennis.exitfinder.rooms.*;
 import me.dennis.exitfinder.types.Room;
 
 public enum RoomEnum {
 
-	LEVEL,
-	CREATOR,
-	PAUSE;
+	LEVEL(new RoomLevel()),
+	CREATOR(new RoomCreator()),
+	PAUSE(new RoomPause());
 	
-	public Integer getId() {
-		return this.ordinal();
-	}
+	public Room room;
 	
-	public Room getRoom() {
-		return null;
+	private RoomEnum(Room room) {
+		this.room = room;
 	}
 	
 }
