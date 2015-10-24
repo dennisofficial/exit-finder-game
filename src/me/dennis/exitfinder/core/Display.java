@@ -35,7 +35,7 @@ public class Display extends JPanel implements ActionListener, Runnable {
 		
 		K.setupKeys();
 		M.setupKeys();
-		RM.setupRooms();
+		RM.init();
 		cam = new Camera();
 		gm = new GrassManager();
 		
