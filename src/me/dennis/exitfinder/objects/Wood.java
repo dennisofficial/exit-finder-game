@@ -1,15 +1,18 @@
 package me.dennis.exitfinder.objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+
 import me.dennis.exitfinder.core.Game;
+import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
 
 public class Wood extends GameObject {
 
 	RoomManager rm = Game.roommanager;
+	BufferedImage image = Image.WOOD.getImage();
 
 	public Wood(Integer x, Integer y, Integer meta) {
 		super(x, y, meta);
@@ -94,8 +97,7 @@ public class Wood extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0x0));
-		g.fillRect((int) x, (int) y, width, height);
+		g.drawImage(image, (int) x, (int) y, width, height, null);
 	}
 
 	@Override
