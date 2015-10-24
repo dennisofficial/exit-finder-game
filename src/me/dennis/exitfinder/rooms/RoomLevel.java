@@ -8,7 +8,7 @@ import me.dennis.exitfinder.types.Background;
 import me.dennis.exitfinder.types.Room;
 import me.dennis.exitfinder.utils.MapLoader;
 
-public class RoomMain extends Room {
+public class RoomLevel extends Room {
 
 	Background bg = new Background(0xACD7FF);
 	MapLoader ml = Game.maploader;

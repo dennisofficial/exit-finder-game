@@ -6,18 +6,20 @@ import java.util.List;
 
 import me.dennis.exitfinder.enums.RoomEnum;
 import me.dennis.exitfinder.rooms.RoomCreator;
-import me.dennis.exitfinder.rooms.RoomMain;
+import me.dennis.exitfinder.rooms.RoomLevel;
+import me.dennis.exitfinder.rooms.RoomPause;
 import me.dennis.exitfinder.types.GameObject;
 import me.dennis.exitfinder.types.Room;
 
 public class RoomManager {
 
 	public List<Room> rooms = new ArrayList<Room>();
-	public Integer cr = RoomEnum.MAIN.getId();
+	public Integer cr = RoomEnum.CREATOR.getId();
 	
 	public void setupRooms() {
-		rooms.add(new RoomMain());
+		rooms.add(new RoomLevel());
 		rooms.add(new RoomCreator());
+		rooms.add(new RoomPause());
 		init();
 	}
 	
