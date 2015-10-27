@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import me.dennis.exitfinder.core.Game;
 import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
@@ -15,7 +14,6 @@ public class Elevator extends GameObject {
 	Direction BACK = Direction.BACK;
 	
 	BufferedImage image = Image.GRASS_SLAB.getImage();
-	RoomManager rm = Game.roommanager;
 	
 	int top, bot;
 	int speed = 3;
@@ -55,7 +53,7 @@ public class Elevator extends GameObject {
 	}
 	
 	private void collisionCheck() {
-		for (GameObject object : rm.getObjects()) {
+		for (GameObject object : RoomManager.getObjects()) {
 			if (object instanceof Player) {
 				Player player = (Player) object;
 				Point TL = new Point((int) x, (int) y - speed - 1);

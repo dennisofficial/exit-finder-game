@@ -18,11 +18,6 @@ import me.dennis.exitfinder.utils.Settings;
 @SuppressWarnings("serial")
 public class Display extends JPanel implements ActionListener, Runnable {
 
-	private Settings S = Game.settings;
-	private Keyboard K = Game.keyboard;
-	private Mouse M = Game.mouse;
-	private RoomManager RM = Game.roommanager;
-
 	int tick;
 	int fps;
 	int display;
@@ -33,15 +28,15 @@ public class Display extends JPanel implements ActionListener, Runnable {
 		requestFocus();
 		setFocusable(true);
 		
-		K.setupKeys();
-		M.setupKeys();
-		RM.init();
+		Keyboard.setupKeys();
+		Mouse.setupKeys();
+		RoomManager.init();
 		cam = new Camera();
 		gm = new GrassManager();
 		
-		addKeyListener(K);
-		addMouseListener(M);
-		addMouseMotionListener(M);
+		addKeyListener(new Keyboard());
+		addMouseListener(new Mouse());
+		addMouseMotionListener(new Mouse());
 		
 		new Timer(1000/60, this).start();
 		new Thread(this).start();
@@ -69,11 +64,11 @@ public class Display extends JPanel implements ActionListener, Runnable {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		RM.update();
+		RoomManager.update();
 		cam.update();
 		gm.check();
-		K.reset();
-		M.reset();
+		Keyboard.reset();
+		Mouse.reset();
 		tick++;
 	}
 	
@@ -81,9 +76,9 @@ public class Display extends JPanel implements ActionListener, Runnable {
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(new Color(0xEEEEEE));
-		g.fillRect(0, 0, S.width, S.height);
+		g.fillRect(0, 0, Settings.width, Settings.height);
 		g2d.translate((int) Camera.x, (int) Camera.y);
-		RM.draw(g);
+		RoomManager.draw(g);
 		g2d.translate((int) -Camera.x, (int) -Camera.x);
 		g.dispose();
 		fps++;

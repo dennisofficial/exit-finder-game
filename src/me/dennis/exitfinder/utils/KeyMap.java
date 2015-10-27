@@ -4,15 +4,15 @@ import static java.awt.event.KeyEvent.*;
 
 public class KeyMap {
 
-	public Integer playerLeft() {
+	public static Integer playerLeft() {
 		return VK_A;
 	}
 
-	public Integer playerRight() {
+	public static Integer playerRight() {
 		return VK_D;
 	}
 
-	public Integer playerJump() {
+	public static Integer playerJump() {
 		return VK_W;
 	}
 

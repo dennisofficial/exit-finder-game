@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Keyboard implements KeyListener {
 
-	private List<Boolean> keys = new ArrayList<Boolean>();
-	private List<Boolean> pkeys = new ArrayList<Boolean>();
-	private List<Boolean> rkeys = new ArrayList<Boolean>();
+	private static List<Boolean> keys = new ArrayList<Boolean>();
+	private static List<Boolean> pkeys = new ArrayList<Boolean>();
+	private static List<Boolean> rkeys = new ArrayList<Boolean>();
 	
-	public void setupKeys() {
+	public static void setupKeys() {
 		for (int i = 0; i < KeyEvent.KEY_LAST; i++) {
 			keys.add(false);
 			pkeys.add(false);
@@ -19,22 +19,22 @@ public class Keyboard implements KeyListener {
 		}
 	}
 	
-	public void reset() {
+	public static void reset() {
 		for (int i = 0; i < keys.size(); i++) {
 			pkeys.set(i, false);
 			rkeys.set(i, false);
 		}
 	}
 	
-	public Boolean isDirect(Integer key) {
+	public static Boolean isDirect(Integer key) {
 		return keys.get(key);
 	}
 	
-	public Boolean isPressed(Integer key) {
+	public static Boolean isPressed(Integer key) {
 		return pkeys.get(key);
 	}
 	
-	public Boolean isReleased(Integer key) {
+	public static Boolean isReleased(Integer key) {
 		return rkeys.get(key);
 	}
 	

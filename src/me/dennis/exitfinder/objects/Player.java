@@ -11,10 +11,6 @@ import me.dennis.exitfinder.utils.KeyMap;
 
 public class Player extends GameObject {
 
-	RoomManager rm = Game.roommanager;
-	Keyboard key = Game.keyboard;
-	KeyMap km = Game.keymap;
-
 	double hozGain = 0.5;
 	double hozMax = 3;
 

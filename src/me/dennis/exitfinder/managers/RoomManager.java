@@ -9,24 +9,24 @@ import me.dennis.exitfinder.types.Room;
 
 public class RoomManager {
 
-	Room room = RoomEnum.LEVEL.room;
+	static Room room = RoomEnum.LEVEL.room;
 	
-	public void setRoom(RoomEnum room) {
-		this.room = room.room;
+	public static void setRoom(RoomEnum room) {
+		RoomManager.room = room.room;
 	}
 
-	public List<GameObject> getObjects() {
+	public static List<GameObject> getObjects() {
 		return room.objects;
 	}
 	
-	public void init() {
+	public static void init() {
 		room.init();
 		for (GameObject object : room.objects) {
 			object.init();
 		}
 	}
 	
-	public void update() {
+	public static void update() {
 		room.update();
 		for (GameObject object : room.objects) {
 			object.update();
@@ -34,7 +34,7 @@ public class RoomManager {
 		}
 	}
 	
-	public void draw(Graphics g) {
+	public static void draw(Graphics g) {
 		room.draw(g);
 		for (GameObject object : room.objects) {
 			object.draw(g);

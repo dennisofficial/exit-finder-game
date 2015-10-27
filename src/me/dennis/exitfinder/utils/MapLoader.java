@@ -12,7 +12,7 @@ import me.dennis.exitfinder.types.GameObject;
 
 public class MapLoader {
 
-	public List<GameObject> loadLevel(Level level) {
+	public static List<GameObject> loadLevel(Level level) {
 		List<GameObject> output = new ArrayList<GameObject>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(level.getFile()));
