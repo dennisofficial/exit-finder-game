@@ -3,7 +3,7 @@ package me.dennis.exitfinder.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import me.dennis.exitfinder.core.Game;
+
 import me.dennis.exitfinder.input.Keyboard;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
@@ -33,8 +33,8 @@ public class Player extends GameObject {
 	}
 
 	private void movementHoz() {
-		if (key.isDirect(km.playerLeft())) {
-			if (key.isDirect(km.playerRight())) {
+		if (Keyboard.isDirect(KeyMap.playerLeft())) {
+			if (Keyboard.isDirect(KeyMap.playerRight())) {
 				// L + R
 				if (hspeed > 0) hspeed -= hozGain;
 				if (hspeed < 0) hspeed += hozGain;
@@ -45,7 +45,7 @@ public class Player extends GameObject {
 			}
 		}
 		else {
-			if (key.isDirect(km.playerRight())) {
+			if (Keyboard.isDirect(KeyMap.playerRight())) {
 				// R
 				if (hspeed < hozMax) hspeed += hozGain;
 
@@ -59,8 +59,8 @@ public class Player extends GameObject {
 	}
 
 	public void jump() {
-		if (key.isPressed(km.playerJump())) {
-			for (GameObject object : rm.getObjects()) {
+		if (Keyboard.isPressed(KeyMap.playerJump())) {
+			for (GameObject object : RoomManager.getObjects()) {
 				if (object.isSolid() && !object.equals(this)) {
 					Point L = new Point((int) x, (int) (y + height + vspeed));
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
@@ -74,7 +74,7 @@ public class Player extends GameObject {
 	}
 
 	public void collision() {
-		for (GameObject object : rm.getObjects()) {
+		for (GameObject object : RoomManager.getObjects()) {
 			if (object.isSolid() && !object.equals(this)) {
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));

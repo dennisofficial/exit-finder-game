@@ -4,14 +4,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import me.dennis.exitfinder.core.Game;
 import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
 
 public class Wood extends GameObject {
 
-	RoomManager rm = Game.roommanager;
 	BufferedImage image = Image.WOOD.getImage();
 
 	public Wood(Integer x, Integer y, Integer meta) {
@@ -35,7 +33,7 @@ public class Wood extends GameObject {
 	}
 
 	public void collision() {
-		for (GameObject object : rm.getObjects()) {
+		for (GameObject object : RoomManager.getObjects()) {
 			if (object.isSolid() && !object.equals(this)) {
 				if (vspeed > 0) {
 					Point L = new Point((int) (x + 1), (int) (y + height + vspeed - 1));
@@ -74,7 +72,7 @@ public class Wood extends GameObject {
 	}
 
 	public boolean check(Integer i) {
-		for (GameObject object : rm.getObjects()) {
+		for (GameObject object : RoomManager.getObjects()) {
 			if (object.isSolid() && !object.equals(this)) {
 				if (i > 0) {
 					Point T = new Point((int) (x + width), (int) y);

@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import me.dennis.exitfinder.core.Camera;
-import me.dennis.exitfinder.core.Game;
 import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.utils.Settings;
 
@@ -16,7 +15,6 @@ public class Background {
 	public float vspeed;
 	public float hspeed;
 
-	Settings s = Game.settings;
 	BufferedImage image;
 	Color color;
 	
@@ -31,7 +29,7 @@ public class Background {
 	public void draw(Graphics g) {
 		if (color != null) {
 			g.setColor(color);
-			g.fillRect((int) -Camera.x, (int) -Camera.y, s.width, s.height);
+			g.fillRect((int) -Camera.x, (int) -Camera.y, Settings.width, Settings.height);
 		}
 	}
 	
