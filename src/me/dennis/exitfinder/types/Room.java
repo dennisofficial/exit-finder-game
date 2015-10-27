@@ -10,6 +10,8 @@ public abstract class Room {
 	
 	public abstract void init();
 	public abstract void update();
-	public abstract void draw(Graphics g);
+	public abstract void beginDraw(Graphics g);
+	public abstract void endDraw(Graphics g);
+
 	
 }

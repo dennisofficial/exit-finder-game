@@ -35,10 +35,11 @@ public class RoomManager {
 	}
 	
 	public static void draw(Graphics g) {
-		room.draw(g);
+		room.beginDraw(g);
 		for (GameObject object : room.objects) {
 			object.draw(g);
 		}
+		room.endDraw(g);
 	}
 	
 }

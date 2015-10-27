@@ -21,8 +21,12 @@ public class RoomLevel extends Room {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void beginDraw(Graphics g) {
 		bg.draw(g);
+	}
+
+	@Override
+	public void endDraw(Graphics g) {
 	}
 
 }

@@ -104,7 +104,11 @@ public class RoomCreator extends Room {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void beginDraw(Graphics g) {
+	}
+
+	@Override
+	public void endDraw(Graphics g) {
 		c.draw(g);
 	}
 

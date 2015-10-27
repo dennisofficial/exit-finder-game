@@ -15,7 +15,11 @@ public class RoomPause extends Room {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public void beginDraw(Graphics g) {
+	}
+
+	@Override
+	public void endDraw(Graphics g) {
 	}
 
 }
