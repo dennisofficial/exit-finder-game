@@ -126,7 +126,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(0xFFFFFF));
+		g.setColor(new Color(0xB0B0B0));
 		g.fillRect((int) x, (int) y, width, height);
 	}
 

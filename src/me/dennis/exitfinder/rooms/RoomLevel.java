@@ -16,7 +16,6 @@ public class RoomLevel extends Room {
 	@Override
 	public void init() {
 		objects.addAll(MapLoader.loadLevel(Level.W0L1));
-		cm.createClouds();
 	}
 
 	@Override
