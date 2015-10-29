@@ -43,7 +43,7 @@ public class RoomPause extends Room {
 			g2d.drawImage(image, 0, 0, null);
 		}
 		else {
-			g2d.drawImage(blurImage, 0, 0, null);
+			g2d.drawImage(blurImage, 0, 0, Settings.width, Settings.height, null);
 		}
 	}
 
@@ -58,12 +58,14 @@ public class RoomPause extends Room {
 	}
 
 	public BufferedImage blurImage() {
-		BufferedImage output = new BufferedImage(Settings.width, Settings.height, BufferedImage.TYPE_INT_RGB);
-		for (int x = 0; x < image.getWidth(); x++) {
-			for (int y = 0; y < image.getHeight(); y++) {
+		BufferedImage output = new BufferedImage(Settings.width/2, Settings.height/2, BufferedImage.TYPE_INT_RGB);
+		// Kernel Size
+		int size = 2;
+		for (int x = 0; x < image.getWidth(); x+=2) {
+			for (int y = 0; y < image.getHeight(); y+=2) {
 				int r = 0, g = 0, b = 0, d = 0;
-				for (int i = x - 1; i <= x + 1; i++) {
-					for (int j = y - 1; j <= y + 1; j++) {
+				for (int i = x - size; i <= x + size; i++) {
+					for (int j = y - size; j <= y + size; j++) {
 						try {
 							Pixel p = getPixel(i, j);
 							r += p.r;
@@ -78,7 +80,7 @@ public class RoomPause extends Room {
 				g /= d;
 				b /= d;
 				int[] rgb = { r, g, b };
-				output.getRaster().setPixels(x, y, 1, 1, rgb);
+				output.getRaster().setPixels(x/2, y/2, 1, 1, rgb);
 			}
 		}
 		return output;
