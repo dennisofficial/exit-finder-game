@@ -3,7 +3,8 @@ package me.dennis.exitfinder.enums;
 public enum ImageType {
 
 	BLOCK("blocks/"),
-	SLAB("slabs/");
+	SLAB("slabs/"),
+	BUTTON("gui/buttons/");
 	
 	private String path;
 	

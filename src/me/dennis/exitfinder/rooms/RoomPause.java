@@ -14,6 +14,7 @@ import me.dennis.exitfinder.utils.Settings;
 public class RoomPause extends Room {
 
 	private float cx, cy;
+	private Room room;
 
 	public BufferedImage image;
 	public BufferedImage blurImage;
@@ -29,7 +30,7 @@ public class RoomPause extends Room {
 			image = blurImage;
 		}
 		if (Keyboard.isPressed(KeyMap.menuPause())) {
-			RoomManager.setRoom(RoomEnum.LEVEL);
+			RoomManager.setRoom(RoomEnum.getEnum(room));
 			Camera.x = cx;
 			Camera.y = cy;
 			blurImage = null;
@@ -53,6 +54,7 @@ public class RoomPause extends Room {
 	public void setVariables(float cx, float cy, Room room) {
 		this.cx = cx;
 		this.cy = cy;
+		this.room = room;
 	}
 
 	public BufferedImage blurImage() {

@@ -15,4 +15,13 @@ public enum RoomEnum {
 		this.room = room;
 	}
 	
+	public static RoomEnum getEnum(Room room) {
+		for (RoomEnum enim : values()) {
+			if (room.equals(enim.room)) {
+				return enim;
+			}
+		}
+		return null;
+	}
+	
 }

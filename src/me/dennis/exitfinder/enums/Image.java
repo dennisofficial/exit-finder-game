@@ -9,11 +9,21 @@ import me.dennis.exitfinder.types.GameFile;
 
 public enum Image {
 
+	// SLABS
+	GRASS_SLAB("grass", ImageType.SLAB),
+	
+	// BLOCKS
 	DIRT("dirt", ImageType.BLOCK),
 	GRASS("grass", ImageType.BLOCK),
-	GRASS_SLAB("grass", ImageType.SLAB),
 	CURSOR("cursor", ImageType.BLOCK),
-	WOOD("wood", ImageType.BLOCK);
+	WOOD("wood", ImageType.BLOCK),
+	
+	// BUTTONS
+	B_CONTINUE("continue", ImageType.BUTTON),
+	B_QUIT("quit", ImageType.BUTTON),
+	B_OPTIONS("options", ImageType.BUTTON),
+	B_EXIT("exit", ImageType.BUTTON),
+	B_NEW_GAME("new-game", ImageType.BUTTON);
 
 	private GameFile file;
 	
