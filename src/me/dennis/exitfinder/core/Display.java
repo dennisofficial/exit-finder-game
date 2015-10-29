@@ -20,7 +20,8 @@ public class Display extends JPanel implements ActionListener, Runnable {
 
 	int tick;
 	int fps;
-	int display;
+	
+	int fpsDisplay;
 	Camera cam;
 	GrassManager gm;
 	
@@ -50,11 +51,11 @@ public class Display extends JPanel implements ActionListener, Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (display < 2) {
-				display++;
+			if (fpsDisplay < 2) {
+				fpsDisplay++;
 			}
 			else {
-				display = 0;
+				fpsDisplay = 0;
 				System.out.println("FPS: " + fps + " Ticks: " + tick);
 			}
 			tick = 0;
