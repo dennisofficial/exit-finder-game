@@ -58,22 +58,23 @@ public class RoomPause extends Room {
 	}
 
 	public BufferedImage blurImage() {
+		long time = System.currentTimeMillis();
 		BufferedImage output = new BufferedImage(Settings.width/2, Settings.height/2, BufferedImage.TYPE_INT_RGB);
 		// Kernel Size
 		int size = 2;
+		// Image processing algorithm
 		for (int x = 0; x < image.getWidth(); x+=2) {
 			for (int y = 0; y < image.getHeight(); y+=2) {
 				int r = 0, g = 0, b = 0, d = 0;
 				for (int i = x - size; i <= x + size; i++) {
 					for (int j = y - size; j <= y + size; j++) {
 						try {
-							Pixel p = getPixel(i, j);
-							r += p.r;
-							g += p.g;
-							b += p.b;
+							int[] p = image.getRaster().getPixel(i, j, new int[3]);
+							r += p[0];
+							g += p[1];
+							b += p[2];
 							d++;
-						} catch (IndexOutOfBoundsException e) {
-						}
+						} catch (IndexOutOfBoundsException e) {}
 					}
 				}
 				r /= d;
@@ -83,28 +84,8 @@ public class RoomPause extends Room {
 				output.getRaster().setPixels(x/2, y/2, 1, 1, rgb);
 			}
 		}
+		System.out.println(System.currentTimeMillis() - time);
 		return output;
-	}
-
-	public Pixel getPixel(int x, int y) {
-		int r, g, b;
-		int[] ar = image.getRaster().getPixel(x, y, new int[3]);
-		r = ar[0];
-		g = ar[1];
-		b = ar[2];
-		return new Pixel(r, g, b);
-	}
-
-}
-
-class Pixel {
-
-	int r, g, b;
-
-	public Pixel(int red, int green, int blue) {
-		r = red;
-		g = green;
-		b = blue;
 	}
 
 }
