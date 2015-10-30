@@ -44,7 +44,7 @@ public class RoomLevel extends Room {
 			room.image = image;
 			RoomManager.setRoom(RoomEnum.PAUSE);
 			
-			// save variables
+			// Save Variables
 			room.setVariables(Camera.x, Camera.y, this);
 			
 			// Camera reset

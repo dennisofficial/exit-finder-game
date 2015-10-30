@@ -3,14 +3,19 @@ package me.dennis.exitfinder.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.security.SecureRandom;
 
 import me.dennis.exitfinder.input.Keyboard;
+import me.dennis.exitfinder.managers.ParticleManager;
 import me.dennis.exitfinder.managers.RoomManager;
 import me.dennis.exitfinder.types.GameObject;
+import me.dennis.exitfinder.types.Particle;
 import me.dennis.exitfinder.utils.KeyMap;
 
 public class Player extends GameObject {
 
+	ParticleManager pm = new ParticleManager();
+	
 	double hozGain = 0.5;
 	double hozMax = 3;
 
@@ -30,6 +35,7 @@ public class Player extends GameObject {
 		vspeed += 0.5;
 		jump();
 		collision();
+		pm.update();
 	}
 
 	private void movementHoz() {
@@ -48,7 +54,6 @@ public class Player extends GameObject {
 			if (Keyboard.isDirect(KeyMap.playerRight())) {
 				// R
 				if (hspeed < hozMax) hspeed += hozGain;
-
 			}
 			else {
 				// NONE
@@ -82,6 +87,7 @@ public class Player extends GameObject {
 					if (object.bounds.contains(L) || object.bounds.contains(R)) {
 						y = object.y - height;
 						vspeed = 0;
+						generateParticles();
 					}
 				}
 				if (vspeed < 0) {
@@ -100,6 +106,7 @@ public class Player extends GameObject {
 							Wood wood = (Wood) object;
 							if (!wood.check(1)) {
 								object.x = x + width + 1;
+								generateParticles();
 							}
 						}
 						x = object.x - width;
@@ -114,6 +121,7 @@ public class Player extends GameObject {
 							Wood wood = (Wood) object;
 							if (!wood.check(-1)) {
 								object.x = x - width - 1;
+								generateParticles();
 							}
 						}
 						x = object.x + object.width;
@@ -124,10 +132,24 @@ public class Player extends GameObject {
 		}
 	}
 
+	private void generateParticles() {
+		// particle generator
+		int a = 255;
+		a *= Math.abs(hspeed)/hozMax;
+		SecureRandom sr = new SecureRandom();
+		pm.parts.add(new Particle(
+				(int) x + width/2, // x
+				(int) y + height - 1, // y
+				sr.nextInt(width) - width/2, 0, // offset
+				(int) -hspeed/2, -sr.nextInt(2), // delta
+				0xFF, 0xFF, 0xFF, a));
+	}
+
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(new Color(0xB0B0B0));
 		g.fillRect((int) x, (int) y, width, height);
+		pm.draw(g);
 	}
 
 	@Override
