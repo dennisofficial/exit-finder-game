@@ -189,7 +189,5 @@ public class Player extends GameObject {
 		return true;
 	}
 
-	enum Direction {
-		LEFT, RIGHT
-	}
+	enum Direction { LEFT, RIGHT }
 }
