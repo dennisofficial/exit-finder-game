@@ -15,17 +15,16 @@ public class ParticleManager {
 			Particle part = parts.get(i);
 			if (!part.doRemove()) {
 				part.update();
-			}
-			else {
+			} else {
 				parts.remove(part);
 			}
 		}
 	}
-	
+
 	public void draw(Graphics g) {
 		for (Particle part : parts) {
 			part.draw(g);
 		}
 	}
-	
+
 }
