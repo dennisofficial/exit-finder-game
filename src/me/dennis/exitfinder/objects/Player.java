@@ -173,7 +173,7 @@ public class Player extends GameObject {
 		}
 		int oy = sr.nextInt(height);
 		int dx = (int) -hspeed / 3;
-		int dy = sr.nextInt(4) - 2;
+		int dy = sr.nextInt(2) - 1;
 		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
 	}
 
