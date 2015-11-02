@@ -58,7 +58,6 @@ public class RoomPause extends Room {
 	}
 
 	public BufferedImage blurImage() {
-		long time = System.currentTimeMillis();
 		BufferedImage output = new BufferedImage(Settings.width/2, Settings.height/2, BufferedImage.TYPE_INT_RGB);
 		// Kernel Size
 		int size = 2;
@@ -84,7 +83,6 @@ public class RoomPause extends Room {
 				output.getRaster().setPixels(x/2, y/2, 1, 1, rgb);
 			}
 		}
-		System.out.println(System.currentTimeMillis() - time);
 		return output;
 	}
 
