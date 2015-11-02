@@ -15,7 +15,9 @@ import me.dennis.exitfinder.utils.KeyMap;
 public class Player extends GameObject {
 
 	ParticleManager pm = new ParticleManager();
-	
+	Direction LEFT = Direction.LEFT;
+	Direction RIGHT = Direction.RIGHT;
+
 	double hozGain = 0.5;
 	double hozMax = 3;
 
@@ -42,23 +44,26 @@ public class Player extends GameObject {
 		if (Keyboard.isDirect(KeyMap.playerLeft())) {
 			if (Keyboard.isDirect(KeyMap.playerRight())) {
 				// L + R
-				if (hspeed > 0) hspeed -= hozGain;
-				if (hspeed < 0) hspeed += hozGain;
-			}
-			else {
+				if (hspeed > 0)
+					hspeed -= hozGain;
+				if (hspeed < 0)
+					hspeed += hozGain;
+			} else {
 				// L
-				if (hspeed > -hozMax) hspeed -= hozGain;
+				if (hspeed > -hozMax)
+					hspeed -= hozGain;
 			}
-		}
-		else {
+		} else {
 			if (Keyboard.isDirect(KeyMap.playerRight())) {
 				// R
-				if (hspeed < hozMax) hspeed += hozGain;
-			}
-			else {
+				if (hspeed < hozMax)
+					hspeed += hozGain;
+			} else {
 				// NONE
-				if (hspeed > 0) hspeed -= hozGain;
-				if (hspeed < 0) hspeed += hozGain;
+				if (hspeed > 0)
+					hspeed -= hozGain;
+				if (hspeed < 0)
+					hspeed += hozGain;
 			}
 		}
 	}
@@ -87,7 +92,7 @@ public class Player extends GameObject {
 					if (object.bounds.contains(L) || object.bounds.contains(R)) {
 						y = object.y - height;
 						vspeed = 0;
-						generateParticles();
+						generateRunningParticles();
 					}
 				}
 				if (vspeed < 0) {
@@ -106,10 +111,13 @@ public class Player extends GameObject {
 							Wood wood = (Wood) object;
 							if (!wood.check(1)) {
 								object.x = x + width + 1;
-								generateParticles();
+								generateRunningParticles();
 							}
 						}
 						x = object.x - width;
+						for (int i = 0; i < 5; i++) {
+							generateWallParticles(RIGHT);
+						}
 						hspeed = 0;
 					}
 				}
@@ -121,10 +129,13 @@ public class Player extends GameObject {
 							Wood wood = (Wood) object;
 							if (!wood.check(-1)) {
 								object.x = x - width - 1;
-								generateParticles();
+								generateRunningParticles();
 							}
 						}
 						x = object.x + object.width;
+						for (int i = 0; i < 5; i++) {
+							generateWallParticles(LEFT);
+						}
 						hspeed = 0;
 					}
 				}
@@ -132,17 +143,38 @@ public class Player extends GameObject {
 		}
 	}
 
-	private void generateParticles() {
-		// particle generator
-		int a = 255;
-		a *= Math.abs(hspeed)/hozMax;
+	private void generateRunningParticles() {
+		int a = (255 / 3) * 2;
+		a *= Math.abs(hspeed) / hozMax;
 		SecureRandom sr = new SecureRandom();
-		pm.parts.add(new Particle(
-				(int) x + width/2, // x
-				(int) y + height - 1, // y
-				sr.nextInt(width) - width/2, 0, // offset
-				(int) -hspeed/2, -sr.nextInt(2), // delta
-				0xFF, 0xFF, 0xFF, a));
+		int x = (int) this.x;
+		int y = (int) this.y + height - 1;
+		int ox = sr.nextInt(width);
+		int oy = 0;
+		int dx = (int) -hspeed / 2;
+		int dy = -sr.nextInt(2);
+		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
+	}
+
+	private void generateWallParticles(Direction dir) {
+		int a = 255;
+		a *= Math.abs(hspeed) / hozMax;
+		SecureRandom sr = new SecureRandom();
+		int x = (int) this.x + width / 2;
+		if (dir.equals(LEFT)) {
+			x -= width / 2;
+		} else {
+			x += width / 2;
+		}
+		int y = (int) this.y;
+		int ox = sr.nextInt(10);
+		if (dir.equals(LEFT)) {
+			ox *= -1;
+		}
+		int oy = sr.nextInt(height);
+		int dx = (int) -hspeed / 3;
+		int dy = sr.nextInt(4) - 2;
+		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
 	}
 
 	@Override
@@ -157,4 +189,7 @@ public class Player extends GameObject {
 		return true;
 	}
 
+	enum Direction {
+		LEFT, RIGHT
+	}
 }

@@ -82,6 +82,5 @@ public class Elevator extends GameObject {
 		return true;
 	}
 	
+	enum Direction { TO, BACK }
 }
-
-enum Direction { TO, BACK }
