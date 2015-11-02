@@ -29,6 +29,9 @@ public enum Image {
 	
 	private Image(String path, ImageType type) {
 		file = new GameFile(type.getFolder() + path, FileType.IMAGE);
+		if (!file.exists()) {
+			System.err.println("Cannot locate FileType \"" + type.toString() + "\": " + file.getPath());
+		}
 	}
 	
 	public GameFile getFile() {

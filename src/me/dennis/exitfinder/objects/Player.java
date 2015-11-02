@@ -91,6 +91,11 @@ public class Player extends GameObject {
 					Point R = new Point((int) (x + width - 1), (int) (y + height + vspeed - 1));
 					if (object.bounds.contains(L) || object.bounds.contains(R)) {
 						y = object.y - height;
+						if (vspeed > 1) {
+							for (int i = 0; i < 5; i++) {
+								generateJumpParticles();
+							}
+						}
 						vspeed = 0;
 						generateRunningParticles();
 					}
@@ -174,6 +179,18 @@ public class Player extends GameObject {
 		int oy = sr.nextInt(height);
 		int dx = (int) -hspeed / 3;
 		int dy = sr.nextInt(2) - 1;
+		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
+	}
+
+	public void generateJumpParticles() {
+		int a = 255/2;
+		SecureRandom sr = new SecureRandom();
+		int x = (int) this.x;
+		int y = (int) this.y + height - 1;
+		int ox = sr.nextInt(width);
+		int oy = -sr.nextInt(5);
+		int dx = (-width/2 + ox)/7;
+		int dy = (int) -vspeed/4;
 		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
 	}
 
