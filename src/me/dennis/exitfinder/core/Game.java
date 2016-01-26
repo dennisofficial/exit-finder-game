@@ -12,7 +12,7 @@ public class Game {
 		f.add(new Display());
 		f.setVisible(true);
 		f.setResizable(false);
-		f.setSize(Settings.width, Settings.height);
+		f.setSize((Settings.width / 4) * 3, (Settings.height / 4) * 3);
 		f.setLocationRelativeTo(null);
 	}
 
