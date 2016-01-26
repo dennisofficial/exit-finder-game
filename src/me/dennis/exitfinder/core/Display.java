@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -24,6 +25,7 @@ public class Display extends JPanel implements ActionListener, Runnable {
 	int fpsDisplay;
 	Camera cam;
 	GrassManager gm;
+	BufferedImage image;
 	
 	public Display() {
 		requestFocus();
@@ -75,13 +77,15 @@ public class Display extends JPanel implements ActionListener, Runnable {
 	
 	@Override
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(new Color(0xEEEEEE));
-		g.fillRect(0, 0, Settings.width, Settings.height);
-		g2d.translate((int) Camera.x, (int) Camera.y);
-		RoomManager.draw(g);
-		g2d.translate((int) -Camera.x, (int) -Camera.x);
-		g.dispose();
+		image = new BufferedImage(Settings.width, Settings.height, BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2 = image.createGraphics();
+		g2.setColor(new Color(0xEEEEEE));
+		g2.fillRect(0, 0, Settings.width, Settings.height);
+		g2.translate((int) Camera.x, (int) Camera.y);
+		RoomManager.draw(g2);
+		g2.translate((int) -Camera.x, (int) -Camera.x);
+		g.drawImage(image, 0, 0, null);
+		g2.dispose();
 		fps++;
 		repaint();
 	}
