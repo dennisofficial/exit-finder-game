@@ -78,17 +78,17 @@ public class Display extends JPanel implements ActionListener, Runnable {
 	
 	@Override
 	public void paint(Graphics g) {
-		//Graphics2D g1 = (Graphics2D) g;
+		Graphics2D g1 = (Graphics2D) g;
 		image = new BufferedImage(Settings.width, Settings.height, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = image.createGraphics();
-		//setRenderingHints(g1);
-		//setRenderingHints(g2);
+		setRenderingHints(g1);
+		setRenderingHints(g2);
 		g2.setColor(new Color(0xEEEEEE));
 		g2.fillRect(0, 0, Settings.width, Settings.height);
 		g2.translate((int) Camera.x, (int) Camera.y);
 		RoomManager.draw(g2);
 		g2.translate((int) -Camera.x, (int) -Camera.x);
-		g.drawImage(image, 0, 0, (Settings.width / 4) * 3, (Settings.height / 4) * 3, null);
+		g1.drawImage(image, 0, 0, (Settings.width / 4) * 3, (Settings.height / 4) * 3, null);
 		g2.dispose();
 		fps++;
 		repaint();
