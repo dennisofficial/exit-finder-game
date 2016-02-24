@@ -76,6 +76,9 @@ public class Player extends GameObject {
 					Point R = new Point((int) (x + height - 1), (int) (y + height + vspeed));
 					if (object.bounds.contains(L) || object.bounds.contains(R)) {
 						vspeed -= 11;
+						for (int i = 0; i < 10; i++) {
+							generateJumpParticles();
+						}
 						break;
 					}
 				}
@@ -93,7 +96,7 @@ public class Player extends GameObject {
 						y = object.y - height;
 						if (vspeed > 1) {
 							for (int i = 0; i < 5; i++) {
-								generateJumpParticles();
+								generateLandParticles();
 							}
 						}
 						vspeed = 0;
@@ -147,7 +150,7 @@ public class Player extends GameObject {
 			}
 		}
 	}
-
+	
 	private void generateRunningParticles() {
 		int a = (255 / 3) * 2;
 		a *= Math.abs(hspeed) / hozMax;
@@ -182,15 +185,27 @@ public class Player extends GameObject {
 		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
 	}
 
-	public void generateJumpParticles() {
+	public void generateLandParticles() {
 		int a = 255/2;
 		SecureRandom sr = new SecureRandom();
 		int x = (int) this.x;
 		int y = (int) this.y + height - 1;
 		int ox = sr.nextInt(width);
 		int oy = -sr.nextInt(5);
-		int dx = (-width/2 + ox)/7;
+		int dx = (-width/2 + ox) / 7;
 		int dy = (int) -vspeed/4;
+		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
+	}
+	
+	public void generateJumpParticles() {
+		int a = 255 / 2;
+		SecureRandom sr = new SecureRandom();
+		int x = (int) this.x;
+		int y = (int) this.y + height - 1;
+		int ox = sr.nextInt(width);
+		int oy = -sr.nextInt(5);
+		int dx = (-width/2 + ox) / 7;
+		int dy = -11 / 3;
 		pm.parts.add(new Particle(x, y, ox, oy, dx, dy, 0xFF, 0xFF, 0xFF, a));
 	}
 
