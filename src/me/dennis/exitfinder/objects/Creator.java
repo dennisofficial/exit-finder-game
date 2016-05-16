@@ -2,7 +2,6 @@ package me.dennis.exitfinder.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import me.dennis.exitfinder.core.Camera;
 import me.dennis.exitfinder.enums.Image;
 import me.dennis.exitfinder.managers.RoomManager;

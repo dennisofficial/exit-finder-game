@@ -76,7 +76,7 @@ public class RoomCreator extends Room {
 			}
 		}
 	}
-
+	
 	public void keyboard() {
 		if (Keyboard.isPressed(KeyEvent.VK_UP)) {
 			Camera.dy -= c.height;

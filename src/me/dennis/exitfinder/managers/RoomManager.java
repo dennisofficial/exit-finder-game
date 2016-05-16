@@ -9,7 +9,7 @@ import me.dennis.exitfinder.types.Room;
 
 public class RoomManager {
 
-	static Room room = RoomEnum.LEVEL.room;
+	static Room room = RoomEnum.CREATOR.room;
 	
 	public static void setRoom(RoomEnum room) {
 		RoomManager.room = room.room;

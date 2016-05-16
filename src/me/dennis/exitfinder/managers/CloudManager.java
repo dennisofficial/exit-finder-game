@@ -20,14 +20,14 @@ public class CloudManager {
 	}
 	
 	public void update() {
-		for (Cloud cloud : clouds) {
-			cloud.update();
+		for (int i = 0; i < clouds.size(); i++) {
+			clouds.get(i).update();
 		}
 	}
 	
 	public void draw(Graphics g) {
-		for (Cloud cloud : clouds) {
-			cloud.draw(g);
+		for (int i = 0; i < clouds.size(); i++) {
+			//clouds.get(i).draw(g);
 		}
 	}
 	
